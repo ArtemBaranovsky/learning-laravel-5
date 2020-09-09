@@ -15,9 +15,8 @@ class ArticlesController extends Controller
 
     public function index()
     {
-//        $articles = Article::all();
-        $articles = Article::latest('published_at')->get();
-//        return $articles; // suitable to return json in api
+//        $articles = Article::latest('published_at')->where('published_at', '<=', Carbon::now())->get();
+        $articles = Article::latest('published_at')->published()->get();
         return view('articles.index', compact('articles'));
     }
 
@@ -31,6 +30,7 @@ class ArticlesController extends Controller
 //            abort(404);
 //        }
         $article = Article::findOrFail($id);
+        dd($article->published_at);
         return view('articles.show', compact('article'));
     }
 
@@ -41,11 +41,8 @@ class ArticlesController extends Controller
 
     public function store()
     {
-//        $input = Request::get('title');
-        $input = Request::all();
         $input['published_at'] = Carbon::now();
-        Article::create($input);
-//        return $input;
+        Article::create(Request::all());
         return redirect('articles');
     }
 }
