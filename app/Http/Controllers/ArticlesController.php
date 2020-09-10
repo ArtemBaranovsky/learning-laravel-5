@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 //use Illuminate\Http\Request;
+use App\Http\Requests\CreateArticleRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 
@@ -39,10 +40,28 @@ class ArticlesController extends Controller
         return view('articles.create');
     }
 
-    public function store()
+    /**
+     * @param CreateArticleRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store(CreateArticleRequest $request)
     {
-        $input['published_at'] = Carbon::now();
-        Article::create(Request::all());
+        // All validation is triggered befor this method through CreateArticleRequest
+//        $input['published_at'] = Carbon::now();
+//        Article::create(Request::all());
+        Article::create($request->all());
         return redirect('articles');
     }
+
+    // Simple way to validate right from the controller
+/*    public function store(\Illuminate\Http\Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required|min:3',
+            'body' => 'required',
+            'published_at' => 'required|date',
+        ]);
+        Article::create($request->all());
+        return redirect('articles');
+    }*/
 }
