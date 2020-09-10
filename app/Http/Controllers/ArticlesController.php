@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 //use Illuminate\Support\Facades\Request;
 
 class ArticlesController extends Controller
@@ -63,6 +65,7 @@ class ArticlesController extends Controller
         // All validation is triggered befor this method through CreateArticleRequest
 //        $input['published_at'] = Carbon::now();
 //        Article::create(Request::all());
+//        Auth::user();     // We'll gonna make o further
         Article::create($request->all());
         return redirect('articles');
     }
