@@ -18,6 +18,7 @@ class ArticlesController extends Controller
 
     public function index()
     {
+        return \Auth::user()->username;
 //        $articles = Article::latest('published_at')->where('published_at', '<=', Carbon::now())->get();
         $articles = Article::latest('published_at')->published()->get();
         return view('articles.index', compact('articles'));
@@ -66,6 +67,8 @@ class ArticlesController extends Controller
 //        $input['published_at'] = Carbon::now();
 //        Article::create(Request::all());
 //        Auth::user();     // We'll gonna make o further
+        Auth::user()->articles()->save(new Article($request->all()));
+
         Article::create($request->all());
         return redirect('articles');
     }

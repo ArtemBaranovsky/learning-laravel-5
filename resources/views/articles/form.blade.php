@@ -1,5 +1,5 @@
 <!--Temporary -->
-{!! Form::hidden('user_id', 1) !!}
+{{--{!! Form::hidden('user_id', 1) !!}--}}
 
 
 <div class="form-group">
