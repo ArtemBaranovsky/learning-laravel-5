@@ -6,10 +6,10 @@ use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-//use Illuminate\Http\Request;
-use App\Http\Requests\CreateArticleRequest;
+use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Request;
+//use Illuminate\Support\Facades\Request;
 
 class ArticlesController extends Controller
 {
@@ -31,8 +31,22 @@ class ArticlesController extends Controller
 //            abort(404);
 //        }
         $article = Article::findOrFail($id);
-        dd($article->published_at);
+//        dd($article->published_at);
         return view('articles.show', compact('article'));
+    }
+
+    public function edit($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('articles.edit', compact('article'));
+    }
+
+//    public function update($id, Request $request)
+    public function update($id, ArticleRequest $request)
+    {
+        $article = Article::findOrFail($id);
+        $article->update($request->all());
+        return redirect('articles');
     }
 
     public function create()
@@ -41,10 +55,10 @@ class ArticlesController extends Controller
     }
 
     /**
-     * @param CreateArticleRequest $request
+     * @param ArticleRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(CreateArticleRequest $request)
+    public function store(ArticleRequest $request)
     {
         // All validation is triggered befor this method through CreateArticleRequest
 //        $input['published_at'] = Carbon::now();
