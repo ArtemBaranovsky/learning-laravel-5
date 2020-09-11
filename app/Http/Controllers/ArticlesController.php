@@ -16,9 +16,16 @@ use Illuminate\Support\Facades\Auth;
 class ArticlesController extends Controller
 {
 
+    public function __construct()
+    {
+//        $this->middleware('auth');
+//        $this->middleware('auth' , ['only' => 'create']);
+        $this->middleware('auth' , ['except' => 'index']);
+    }
+
     public function index()
     {
-        return \Auth::user()->username;
+//        return \Auth::user()->username;
 //        $articles = Article::latest('published_at')->where('published_at', '<=', Carbon::now())->get();
         $articles = Article::latest('published_at')->published()->get();
         return view('articles.index', compact('articles'));
@@ -54,6 +61,10 @@ class ArticlesController extends Controller
 
     public function create()
     {
+//        if (Auth::guest())
+//        {
+//            return redirect('articles');
+//        }
         return view('articles.create');
     }
 

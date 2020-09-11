@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::get('about', ['middleware' => 'auth', 'uses' => 'PagesController@about']);
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 
@@ -42,3 +43,7 @@ Route::get('/articles/create', 'ArticlesController@create');
 Route::get('/articles/{id}', 'ArticlesController@show');
 Route::post('/articles', 'ArticlesController@store');
 Route::get('/articles/{id}/edit', 'ArticlesController@edit');*/
+
+Route::get('foo', ['middleware' => 'manager', function(){
+    return 'this page is only be viewed by managers';
+}]);
