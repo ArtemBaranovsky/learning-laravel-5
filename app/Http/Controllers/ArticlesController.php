@@ -31,30 +31,22 @@ class ArticlesController extends Controller
         return view('articles.index', compact('articles'));
     }
 
-    public function show($id)
+//    public function show(Article $id)
+    public function show(Article $article)
     {
-//        return $id;
-//        $article = Article::find($id);
-//        dd($article);
-//        return $article;
-//        if (is_null($article)) {
-//            abort(404);
-//        }
-        $article = Article::findOrFail($id);
-//        dd($article->published_at);
+//        $article = Article::findOrFail($id);
         return view('articles.show', compact('article'));
     }
 
-    public function edit($id)
+    public function edit(Article $article)
     {
-        $article = Article::findOrFail($id);
+//        $article = Article::findOrFail($id);
         return view('articles.edit', compact('article'));
     }
 
-//    public function update($id, Request $request)
-    public function update($id, ArticleRequest $request)
+    public function update(Article $article, ArticleRequest $request)
     {
-        $article = Article::findOrFail($id);
+//        $article = Article::findOrFail($id);
         $article->update($request->all());
         return redirect('articles');
     }
