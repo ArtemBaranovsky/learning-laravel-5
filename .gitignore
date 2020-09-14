@@ -1,6 +1,7 @@
 
 .vagrant/*
 .idea/*
+.idea
 /node_modules
 /public/
 /public/css/
@@ -23,3 +24,4 @@ Homestead.json
 .env
 /.vagrant/
 /.idea/
+/.vagrant/
