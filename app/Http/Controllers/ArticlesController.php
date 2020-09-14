@@ -66,13 +66,24 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        // All validation is triggered befor this method through CreateArticleRequest
-//        $input['published_at'] = Carbon::now();
-//        Article::create(Request::all());
-//        Auth::user();     // We'll gonna make o further
-        Auth::user()->articles()->save(new Article($request->all()));
+//        Auth::user()->articles()->save(new Article($request->all()));
+//        Article::create($request->all());
+        Auth::user()->articles()->create($request->all());
+//        \Session::flash('flash_message', 'Your article has been created!');
+//        using a session() helper
 
-        Article::create($request->all());
+//        session()->flash('flash_message', 'Your article has been created!');
+//        session()->flash('flash_message_important', true);    // we may pass it through with
+
+//        return redirect('articles')->with([
+//            'flash_message' => 'Your article has been created',
+//            'flash_message_important' => true
+//        ]);
+
+//        flash('Your article has been created!')->important();   // the same with packet laracasts/flash
+//        flash('Your article has been created!');
+//        flash()->success('Your article has been created!');
+        flash()->overlay('Your article has been successfully created!', 'Good job!');
         return redirect('articles');
     }
 

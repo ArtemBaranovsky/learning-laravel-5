@@ -13,7 +13,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "@dev",
         "illuminate/html": "^5.0",
-        "doctrine/dbal": "^2.10"
+        "doctrine/dbal": "^2.10",
+        "laracasts/flash": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

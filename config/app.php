@@ -144,7 +144,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        Laracasts\Flash\FlashServiceProvider::class
     ],
 
     /*
@@ -194,6 +194,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Illuminate\Html\FormFacade::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
+        'Flash'     => Laracasts\Flash\FlashServiceProvider::class,
     ],
 
 ];
