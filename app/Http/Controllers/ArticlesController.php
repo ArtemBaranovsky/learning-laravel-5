@@ -88,6 +88,7 @@ class ArticlesController extends Controller
     /**
      * Save a new article
      * @param ArticleRequest $request
+     * @return Article $article
      */
     private function createArticle(ArticleRequest $request)
     {
