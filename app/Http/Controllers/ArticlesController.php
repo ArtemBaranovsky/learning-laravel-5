@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Auth;
 class ArticlesController extends Controller
 {
 
+    /**
+     * Create a new ArticlesController instance
+     * ArticlesController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth' , ['except' => 'index']);
@@ -44,6 +48,8 @@ class ArticlesController extends Controller
     public function update(Article $article, ArticleRequest $request)
     {
         $article->update($request->all());
+//        $article->tags()->sync($request->input('tag_list'));
+        $this->syncTags($article, $request->input('tag_list'));
         return redirect('articles');
     }
 
@@ -59,10 +65,34 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $article = Auth::user()->articles()->create($request->all());
-//        $article->tags()->attach($request->input('tags'));
-        $article->tags()->attach($request->input('tag_list'));
+//        $article = Auth::user()->articles()->create($request->all());
+//        $this->syncTags($article, $request->input('tag_list'));
+
+//        $article->tags()->attach($request->input('tag_list'));
+        $this->createArticle($request);
+
         flash('Your article has been created!');
         return redirect('articles')->with('Your article has been created');
+    }
+
+    /**
+     * Sync up the list of tags in the database
+     * @param Article $article
+     * @param Array $tags
+     */
+    private function syncTags(Article $article, Array $tags)
+    {
+        $article->tags()->sync($tags);
+    }
+
+    /**
+     * Save a new article
+     * @param ArticleRequest $request
+     */
+    private function createArticle(ArticleRequest $request)
+    {
+        $article = Auth::user()->articles()->create($request->all());
+        $this->syncTags($article, $request->input('tag_list'));
+        return $article;
     }
 }

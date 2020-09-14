@@ -20,7 +20,8 @@
     {!! Form::label('tag_list', 'Tags:') !!}
 {{--    {!! Form::select('tags', $tags,  null , ['class' => 'form-control', 'multiple']) !!}--}}
 {{--    {!! Form::select('tags[]', $tags,  null , ['class' => 'form-control', 'multiple']) !!}--}}
-    {!! Form::select('tag_list[]', $tags, $article->tagList, ['class' => 'form-control', 'multiple']) !!}
+{{--    {!! Form::select('tag_list[]', $tags, $article->tagList, ['class' => 'form-control', 'multiple']) !!}--}}
+    {!! Form::select('tag_list[]', $tags, null, ['class' => 'form-control', 'multiple']) !!}
 </div>
 
 <div class="form-group">
