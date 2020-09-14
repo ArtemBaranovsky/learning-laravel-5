@@ -35,8 +35,9 @@ class ArticlesController extends Controller
 
     public function edit(Article $article)
     {
-        $tagIds = $article->getTagListAttribute()->toArray();
-        $tags = Tag::find($tagIds)->lists('name', 'id');
+        $tags = Tag::lists('name', 'id');
+//        $tagIds = $article->getTagListAttribute()->toArray();
+//        $tags = Tag::find($tagIds)->lists('name', 'id');
         return view('articles.edit', compact('article', 'tags'));
     }
 
