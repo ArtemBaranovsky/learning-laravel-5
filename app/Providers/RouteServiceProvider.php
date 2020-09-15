@@ -27,11 +27,14 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot($router);
-        $router->model('articles', 'App\Article');
-/*        $router->bind('articles', function($id) {
+//        $router->model('articles', 'App\Article');    // binds all articles
+        $router->bind('articles', function($id) {   // now we could define which query exactly should be bind (published) !!!
             return \App\Article::published()->findOrFail($id);
-        });*/
-//        Route::model('articles', \App\Article::class);    // ^5.3
+        });
+//        $router->model('tags', 'App\Tag');
+        $router->bind('tags', function($name) {
+            return \App\Tag::where('name', $name)->firstOrFail();
+        });
     }
 
     /**

@@ -26,10 +26,26 @@ class Article extends Model
 
     // Notice this convention! We have the word 'set' followed by the field name.
     // So if you are trying to manipulate a 'name' attribute use setNameAttribute()
+    /**
+     * Set the published_at attribute.
+     * @param $date
+     */
     public function setPublishedAtAttribute($date)
     {
 //        $this->attributes['published_at'] = Carbon::createFromFormat('Y-m-d', $date);
         $this->attributes['published_at'] = Carbon::parse($date);   // will set time to midnight
+    }
+
+    /**
+     * Get the published_at attribute.
+     * @param $date
+     * @return string
+     */
+    public function getPublishedAtAttribute($date)
+    {
+//        return new Carbon($date);
+//        return (new Carbon($date))->format('Y-m-d');
+        return Carbon::parse($date)->format('Y-m-d');   // now we can use in article/create form just $article->published_at without ->format('Y-m-d')
     }
 
     /**

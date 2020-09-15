@@ -14,7 +14,8 @@
 
 <div class="form-group">
     {!! Form::label('published_at', 'Publish On:') !!}
-    {!! Form::input('date', 'published_at', date('Y-m-d'), ['class' => 'form-control']) !!}
+{{--    {!! Form::input('date', 'published_at', $article->published_at->format('Y-m-d'), ['class' => 'form-control']) !!}--}}
+    {!! Form::input('date', 'published_at', $article->published_at, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('tag_list', 'Tags:') !!}
