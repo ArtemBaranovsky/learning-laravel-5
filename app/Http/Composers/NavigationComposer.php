@@ -17,7 +17,7 @@ class NavigationComposer
     public function compose(View $view)
     {
         $view->with('latest', Article::latest()->first());
-        // if there are lots of model and queries use specific methods at instatiated repositories!!!!!
+        // if there are lots of model and queries use specific methods at instantiated repositories!!!!!
 //        $view->with('latest', Article::with('')->join('')->where('')->first());
 //        $view->with('latest', $this->articles->ofSomeType()); // more clean
 

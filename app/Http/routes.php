@@ -16,6 +16,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+interface BarInterface {}
+class Bar implements BarInterface {}
+class SecondBar implements BarInterface {}
+
+App::bind('BarInterface', 'Bar');
+//app()->bind('BarInterface', 'Bar');
+
+//App::bind('Barlnterface', 'SecondBar');
+
+Route:: get('bar', function(BarInterface $bar) {
+//    dd($bar);
+//    $bar = App::make('BarInterface');
+//    $bar = app()['BarInterface']; // or reference a container as an array
+    $bar = app('BarInterface'); // or pass container as an argument
+    dd($bar);
+});
+
+Route::get('foo', 'FooController@foo');
+
 //Route::get('about', ['middleware' => 'auth', 'uses' => 'PagesController@about']);
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
@@ -44,6 +63,6 @@ Route::get('/articles/{id}', 'ArticlesController@show');
 Route::post('/articles', 'ArticlesController@store');
 Route::get('/articles/{id}/edit', 'ArticlesController@edit');*/
 
-Route::get('foo', ['middleware' => 'manager', function(){
-    return 'this page is only be viewed by managers';
-}]);
+//Route::get('foo', ['middleware' => 'manager', function(){
+//    return 'this page is only be viewed by managers';
+//}]);
