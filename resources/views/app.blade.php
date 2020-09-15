@@ -12,7 +12,8 @@
 </head>
 
 <body>
-    <div class="container">
+    @include('partials.nav')
+    <div class="container pt-5">
         @include ('flash::message')
         @yield('content')
     </div>

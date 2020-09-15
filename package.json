@@ -11,10 +11,21 @@
     "gulp": "gulp"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^4.0.2"
   },
   "dependencies": {
-    "laravel-elixir": "^4.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "autoprefixer": "^9.8.6",
+    "bootstrap-sass": "^3.0.0",
+    "cssnano": "^4.1.10",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-noop": "^1.0.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-size": "^3.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "laravel-elixir": "^6.0.0-18",
+    "postcss-assets": "^5.0.0",
+    "usedcss": "^1.0.7"
   }
 }
