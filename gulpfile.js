@@ -12,5 +12,18 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.sass('app.scss', 'resources/css');
+    mix.styles([
+        'libs/bootstrap.min.css',
+        'css@family=Nunito',
+        'app.css',
+        'libs/select2.min.css'
+    ]);
+    mix.scripts([
+        'libs/jquery.js',
+        'libs/select2.min.js',
+        // 'app.js',
+        // 'bootstrap.js'
+    ]);
+
 });
